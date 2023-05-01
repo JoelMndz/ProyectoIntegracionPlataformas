@@ -10,7 +10,14 @@ const usuarioSchema = new Schema({
   },
   email: String,
   password: String,
-  pin: String,
+  claveTemporal: {
+    type: String,
+    default: null
+  },
+  pin: {
+    type: String,
+    default: null
+  },
   fotoURL: String,
   fechaCreacion:{
     type: Date,
@@ -21,5 +28,14 @@ const usuarioSchema = new Schema({
     default: Date.now()
   }
 });
+
+usuarioSchema.methods.toJSON = function() {
+  const obj = this.toObject();
+  delete obj.password;
+  delete obj.pin;
+  delete obj.__v;
+  delete obj.claveTemporal;
+  return obj;
+};
 
 export const UsuarioModel = model('usuarios',usuarioSchema);

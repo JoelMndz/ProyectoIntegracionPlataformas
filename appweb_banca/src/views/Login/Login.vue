@@ -1,6 +1,6 @@
 <template>
   <main>
-    Login
+    Login {{ API }}
   </main>
 </template>
 
@@ -12,7 +12,7 @@ export default defineComponent({
     
     
     return{
-
+      API: import.meta.env.VITE_API_AUTH
     }
   },
   methods:{

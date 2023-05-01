@@ -1,0 +1,29 @@
+body{
+  font-family: sans-serif;
+}
+
+.fila{
+  height: 89vh;
+}
+
+.botonFormulario{
+  background: #ffdd00; 
+  color: #0f265c; 
+  font-size: 14px; 
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.botonFormulario:hover{
+  background: #ffd100; 
+}
+
+.botonFormulario:disabled{
+  background: #f0da77; 
+}
+
+
+
+
+
+

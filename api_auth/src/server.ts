@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import {PORT} from './config';
 import { conectarMongoDB } from './database';
+import { usuarioRouter } from './routes';
 
 export class Server{
   private app:Express;
@@ -17,7 +18,7 @@ export class Server{
   }
 
   middlewares(){
-    this.app.use(express.json());
+    this.app.use(express.json({limit:'15mb'}));
     this.app.use(morgan('dev'));
     this.app.use(cors());
   }
@@ -28,6 +29,8 @@ export class Server{
         api: 'API para la Authenticación'
       })
     })
+
+    this.app.use('/api/usuario',usuarioRouter)
   }
 
   levantar(){
