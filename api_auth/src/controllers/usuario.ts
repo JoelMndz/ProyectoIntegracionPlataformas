@@ -10,5 +10,14 @@ export const UsuarioController = {
     } catch (error:any) {
       return manejarError(res,error);
     }
+  },
+
+  login: async(req: Request, res: Response)=>{
+    try {
+      const data = await UsuarioService.login(req.body);
+      return res.json(data);
+    } catch (error:any) {
+      return manejarError(res,error);
+    }
   }
 }

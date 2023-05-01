@@ -50,7 +50,7 @@
                 v-model="usuario.email"
                 required>
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
               <input 
                 class="form-control" 
                 type="password"
@@ -58,9 +58,13 @@
                 v-model="usuario.password"
                 required>
             </div>
-            <button class="btn w-100 botonFormulario" 
-            :disabled="cargando"
-            type="submit">Registrarse</button>
+            <BotonForm 
+              texto="Registrarse"
+              :cargando="cargando"/>
+            <div class="mt-3 text-center">
+              <RouterLink 
+                to="/">Regresar al login</RouterLink>
+            </div>
           </form>
         </div>
       </div>
@@ -74,9 +78,11 @@ import { mapActions, mapState } from 'pinia';
 import {defineComponent, reactive, ref} from 'vue';
 import Error from '@/components/Error.vue';
 import router from '@/router';
+import BotonForm from '@/components/BotonForm.vue'
+import { RouterLink } from 'vue-router';
 
 export default defineComponent({
-  components:{Error},
+  components:{ Error, BotonForm, RouterLink },
   setup(){
     const usuario = reactive({
       nombres: '',
@@ -116,6 +122,9 @@ export default defineComponent({
 
 </script>
 
-<style>
-
+<style scoped>
+a{
+  color: #2f7abf;
+  font-size: 14px;
+}
 </style>

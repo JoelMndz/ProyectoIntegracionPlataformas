@@ -1,5 +1,5 @@
 import {UsuarioModel} from '../models'
-import { encriptarCadena, subirImagen } from '../utils'
+import { encriptarCadena, generarToken, subirImagen } from '../utils'
 import { enviarEmail } from '../utils/enviarEmail'
 import { UsuarioValidation } from '../validations'
 
@@ -10,6 +10,11 @@ interface IRequestRegistro{
   email:string,
   password: string,
   fotoBase64: string
+}
+
+interface IRequestLogin{
+  email: string,
+  password: string
 }
 
 export const UsuarioService = {
@@ -64,5 +69,18 @@ export const UsuarioService = {
 
     return nuevoUsuario;
   },
+
+  async login(entidad:IRequestLogin){
+    const usuario:any = await UsuarioModel.findOne({
+      email:entidad.email
+    })
+
+    if(!usuario || !await usuario.compararPasswords(entidad.password)){
+      throw new Error('Credenciales incorrectas!')
+    }    
+
+    const token = generarToken(usuario._id);
+    return {usuario, token}
+  }
 
 }

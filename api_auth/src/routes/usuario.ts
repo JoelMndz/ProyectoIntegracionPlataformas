@@ -3,5 +3,6 @@ import { UsuarioController } from '../controllers';
 
 export const usuarioRouter = Router();
 
-usuarioRouter.post('/', UsuarioController.registrar);
+usuarioRouter.post('/registro', UsuarioController.registrar);
 
+usuarioRouter.post('/login', UsuarioController.login);

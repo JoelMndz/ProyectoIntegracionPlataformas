@@ -1,20 +1,20 @@
 <template>
   <nav class="navbar navbar-light bg-light">
     <span class="navbar-brand">
-      App
+      Banca WEB
     </span>
     <div class="me-4">
-      <RouterLink to="/">Login</RouterLink> 
-       | 
-      <RouterLink to="/registro">Registro</RouterLink>
+      <span>{{ nombreCompleto() }}</span>
+      <span>Salir</span>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 
-  import {defineComponent} from 'vue';
-  import { RouterLink, RouterView } from 'vue-router'
+  import { useUsuarioStore } from '@/stores';
+import { mapState } from 'pinia';
+import {defineComponent} from 'vue';
   export default defineComponent({
     setup(){
 
@@ -22,7 +22,15 @@
 
       }
     },
-    
+    methods:{
+
+      nombreCompleto(){
+        return `${this.usuarioActual?.nombres} ${this.usuarioActual?.apellidos}`
+      }
+    },
+    computed:{
+      ...mapState(useUsuarioStore,['usuarioActual'])
+    }
   })
 
 </script>

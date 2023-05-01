@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import bcrypt from 'bcrypt'
 
 const usuarioSchema = new Schema({
   nombres: String,
@@ -29,12 +30,16 @@ const usuarioSchema = new Schema({
   }
 });
 
+usuarioSchema.methods.compararPasswords = function(password:string){
+  return bcrypt.compare(password, this.password);
+};
+
 usuarioSchema.methods.toJSON = function() {
   const obj = this.toObject();
   delete obj.password;
   delete obj.pin;
-  delete obj.__v;
   delete obj.claveTemporal;
+  delete obj.__v;
   return obj;
 };
 
