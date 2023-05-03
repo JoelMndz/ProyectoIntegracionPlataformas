@@ -26,9 +26,11 @@ export default defineComponent({
   methods:{
     ...mapActions(useCuentaStore,['crearCuenta']),
     async procesarFormulario(){
-      this.cargando = true;
-      await this.crearCuenta();
-      this.cargando = false;
+      if(confirm('¿Seguro quieres crear una cuenta?')){
+        this.cargando = true;
+        await this.crearCuenta();
+        this.cargando = false;
+      }
     }
   }
 })
