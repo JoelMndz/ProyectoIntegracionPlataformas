@@ -1,19 +1,24 @@
 <template>
   <div class="row justify-content-center fila bg-light">
-    Aqui se deben mostrar las cuentas que tengan asociada el usuario
+    <div class="col-2">
+      <FormCuenta />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import FormCuenta from './components/FormCuenta.vue';
 
 
 export default defineComponent({
   components:{
+    FormCuenta
   },
   setup(){
 
     return{
+
     }
   },
 })

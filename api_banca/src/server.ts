@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import {PORT} from './config';
 import { conectarMongoDB } from './database';
+import { cuentaRouter } from './routes/cuenta';
 
 export class Server{
   private app:Express;
@@ -28,6 +29,8 @@ export class Server{
         api: 'API para la Authenticación'
       })
     })
+
+    this.app.use('/api/cuenta', cuentaRouter)
   }
 
   levantar(){

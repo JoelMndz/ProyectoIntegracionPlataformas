@@ -14,7 +14,7 @@ interface IUsuario{
 
 interface IState{
   usuarioActual: IUsuario | null,
-  token: String | null,
+  token: string | null,
 }
 
 const API = `${import.meta.env.VITE_API_AUTH}/api/usuario`

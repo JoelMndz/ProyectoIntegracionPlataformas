@@ -8,7 +8,8 @@ const cuentaSchema = new Schema({
   },
   tipo:{
     type: String,
-    enum: ['ahorro','corriente']
+    enum: ['ahorro','corriente'],
+    default: 'ahorro',
   },
   saldo:{
     type: Number,
@@ -25,10 +26,6 @@ const cuentaSchema = new Schema({
     nombreBeneficiario: String,
     cuentaBeneficiario: String,
     saldoDisponible: Number
-  }],
-  contactos:[{
-    nombreCompleto: String,
-    numeroCuenta: String
   }],
   activa:{
     type: Boolean,
