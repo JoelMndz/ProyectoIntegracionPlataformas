@@ -3,6 +3,8 @@
     <span class="navbar-brand">
       Banca WEB
     </span>
+    <RouterLink to="/contactos">Contactos</RouterLink>
+    <RouterLink to="/cuentas">Cuentas</RouterLink>
     <div class="me-4">
       <span>{{ nombreCompleto() }}</span>
       <span>Salir</span>
@@ -12,9 +14,11 @@
 
 <script lang="ts">
 
-  import { useUsuarioStore } from '@/stores';
+import { useUsuarioStore } from '@/stores';
 import { mapState } from 'pinia';
 import {defineComponent} from 'vue';
+import {RouterLink} from 'vue-router'
+
   export default defineComponent({
     setup(){
 
