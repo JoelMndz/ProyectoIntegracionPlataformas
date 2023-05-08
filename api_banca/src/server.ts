@@ -5,6 +5,7 @@ import cors from 'cors';
 import {PORT} from './config';
 import { conectarMongoDB } from './database';
 import { cuentaRouter } from './routes/cuenta';
+import { contactoRouter} from './routes/contacto';
 
 export class Server{
   private app:Express;
@@ -30,7 +31,8 @@ export class Server{
       })
     })
 
-    this.app.use('/api/cuenta', cuentaRouter)
+    this.app.use('/api/cuenta', cuentaRouter);
+    this.app.use('/api/contacto', contactoRouter);
   }
 
   levantar(){
