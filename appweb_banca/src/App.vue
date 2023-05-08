@@ -10,6 +10,7 @@ import Navbar from './components/Navbar.vue'
 import { defineComponent } from 'vue';
 import { mapState } from 'pinia';
 import { useUsuarioStore } from './stores';
+import { useContactoStore } from './stores';
 
 export default defineComponent({
   components:{
