@@ -8,3 +8,6 @@ export const cuentaRouter = Router();
 cuentaRouter.use(verificarToken);
 
 cuentaRouter.post('/',CuentaController.crear);
+
+cuentaRouter.get('/listar-cuentas', CuentaController.listarCuenta);
+export default cuentaRouter;

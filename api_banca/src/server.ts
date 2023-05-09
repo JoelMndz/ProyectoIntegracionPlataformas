@@ -4,7 +4,7 @@ import cors from 'cors';
 
 import {PORT} from './config';
 import { conectarMongoDB } from './database';
-import { cuentaRouter } from './routes/cuenta';
+import { routes } from './routes/index';
 
 export class Server{
   private app:Express;
@@ -30,7 +30,8 @@ export class Server{
       })
     })
 
-    this.app.use('/api/cuenta', cuentaRouter)
+    this.app.use('/api/cuenta', routes.cuentaRouter)
+    this.app.use('/api/transferencia', routes.TransferenciaRouter)
   }
 
   levantar(){

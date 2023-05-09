@@ -20,5 +20,9 @@ export const CuentaService = {
       usuarioId: entidad.usuarioId,
     })
     return cuentaNueva;
-  }
+  },
+  listarCuenta: async(usuarioId:string)=>{
+    const cuenta = await CuentaModel.find({usuarioId});
+    return cuenta;
+}
 };
