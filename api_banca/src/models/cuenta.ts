@@ -22,10 +22,16 @@ const cuentaSchema = new Schema({
       type: String,
       enum:['deposito','retiro','transferencia']
     },
-    fecha: Date,
+    fecha: {
+      type:Date,
+      default:Date.now()
+    },
     nombreBeneficiario: String,
     cuentaBeneficiario: String,
-    saldoDisponible: Number
+    saldoDisponible: Number,
+    descripcion:String,
+    email:String
+
   }],
   activa:{
     type: Boolean,

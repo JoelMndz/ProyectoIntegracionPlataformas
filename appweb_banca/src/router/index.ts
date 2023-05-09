@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/Cuenta/Cuenta.vue')
     },
     {
+      path: '/transferencia',
+      name: 'transferencia',
+      component: () => import('../views/Transferencia/Transferencia.vue')
+    },
+    {
       path: '/contactos',
       name: 'contactos',
       component: () => import('../views/Contacto/Contacto.vue')
