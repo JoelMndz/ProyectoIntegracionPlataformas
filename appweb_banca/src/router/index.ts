@@ -22,7 +22,12 @@ const router = createRouter({
       path: '/transferencia',
       name: 'transferencia',
       component: () => import('../views/Transferencia/Transferencia.vue')
-    }
+    },
+    {
+      path: '/contactos',
+      name: 'contactos',
+      component: () => import('../views/Contacto/Contacto.vue')
+    },
   ]
 })
 

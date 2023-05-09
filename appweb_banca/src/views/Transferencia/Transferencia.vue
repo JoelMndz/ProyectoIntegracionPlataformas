@@ -152,7 +152,8 @@ export default defineComponent({
         this.transferencia.nombreBeneficiario='',
         this.transferencia.cuentaBeneficiario='',
         this.transferencia.descripcion='',
-        this.transferencia.email=''
+        this.transferencia.email='',
+        this.nombreBeneficiario=''
       }
       this.cargando=false;
 
