@@ -56,7 +56,7 @@ export const UsuarioService = {
       "Banca Web PIN TEMPORAL");
     entidad.password = await encriptarCadena(entidad.password);
     pin = await encriptarCadena(pin);
-    const fotoURL = await subirImagen(entidad.fotoBase64);
+    const fotoURL:any = await subirImagen(entidad.fotoBase64);
     const nuevoUsuario = await UsuarioModel.create({
       nombres: entidad.nombres.trim().toLowerCase(),
       apellidos: entidad.apellidos.trim().toLowerCase(),
@@ -81,6 +81,14 @@ export const UsuarioService = {
 
     const token = generarToken(usuario._id);
     return {usuario, token}
+  },
+
+  async buscarPorId(id:string){
+    const usuario:any = await UsuarioModel.findById(id)
+    if(!usuario){
+      throw new Error('El usuario no existe!');
+    }
+    return usuario;
   }
 
 }

@@ -19,5 +19,14 @@ export const UsuarioController = {
     } catch (error:any) {
       return manejarError(res,error);
     }
-  }
+  },
+
+  buscarPorId: async(req: Request, res: Response)=>{
+    try {
+      const data = await UsuarioService.buscarPorId(req.query.usuarioId as string);
+      return res.json({usuario: data, token: req.headers.token});
+    } catch (error:any) {
+      return manejarError(res,error);
+    }
+  },
 }
