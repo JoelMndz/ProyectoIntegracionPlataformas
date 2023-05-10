@@ -42,8 +42,7 @@ export const useCuentaStore = defineStore('cuenta', {
             titular: `${usuarioStore.usuarioActual?.nombres} ${usuarioStore.usuarioActual?.apellidos}`, 
           }
         })
-        .then((x:any)=>{
-          console.log(x);          
+        .then((x:any)=>{       
           this.cuentas = [...this.cuentas,x.data];  
         })
         .catch((x:any)=>{

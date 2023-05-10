@@ -7,7 +7,7 @@
     <RouterLink to="/cuentas">Cuentas</RouterLink>
     <div class="me-4">
       <span>{{ nombreCompleto() }}</span>
-      <span>Salir</span>
+      <button class="btn btn-danger mx-3" @click="cerrarSesion()">Salir</button>
     </div>
   </nav>
 </template>
@@ -15,7 +15,7 @@
 <script lang="ts">
 
 import { useUsuarioStore } from '@/stores';
-import { mapState } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import {defineComponent} from 'vue';
 import {RouterLink} from 'vue-router'
 
@@ -27,7 +27,7 @@ import {RouterLink} from 'vue-router'
       }
     },
     methods:{
-
+      ...mapActions(useUsuarioStore,['cerrarSesion']),
       nombreCompleto(){
         return `${this.usuarioActual?.nombres} ${this.usuarioActual?.apellidos}`
       }

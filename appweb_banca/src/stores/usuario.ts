@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import Axios from 'axios';
 import { convetirABase64 } from '@/utils/convertirABase64';
 import { useErrorStore } from './error';
+import router from '@/router';
 
 interface IUsuario{
   _id: String,
@@ -73,6 +74,7 @@ export const useUsuarioStore = defineStore('usuario', {
         .then((x:any)=>{
           this.usuarioActual = x.data?.usuario ?? null;    
           this.token = x.data?.token;   
+          localStorage.setItem('token',this.token!)
         })
         .catch((x:any)=>{
           if(x.code === 'ERR_NETWORK'){
@@ -85,7 +87,36 @@ export const useUsuarioStore = defineStore('usuario', {
       } catch (error) {
         console.log(error);
       }
+    },
+
+    async verificarToken(){
+      try {
+        const _token = localStorage.getItem('token');
+        if(_token){
+          const respuesta = await Axios({
+            method:'PUT',
+            url:`${API}/verificar-token`,
+            headers:{
+              token: _token
+            }
+          });
+          this.usuarioActual = respuesta.data.usuario;
+          this.token = respuesta.data.token;   
+           
+        }        
+      } catch (error) {
+        this.usuarioActual = null;
+        this.token = null;
+        localStorage.clear();
+        console.log(error);      
+      }
+    },
+
+    cerrarSesion(){
+      this.usuarioActual = null;
+      this.token = null;
+      localStorage.clear();
+      router.push('/');
     }
   },
-
 })
