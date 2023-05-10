@@ -33,6 +33,7 @@ export class Server{
     this.app.use('/api/cuenta', routes.cuentaRouter)
     this.app.use('/api/transferencia', routes.TransferenciaRouter)
     this.app.use('/api/contacto', routes.contactoRouter);
+    this.app.use('/api/cajero',routes.cajeroRouter);
   }
 
   levantar(){
