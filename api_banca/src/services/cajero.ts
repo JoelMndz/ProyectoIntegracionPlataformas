@@ -22,6 +22,7 @@ export const CajeroService = {
       tipo: 'deposito',
       saldoDisponible: existeCuenta.saldo
     })
+    await existeCuenta.save()    
     return entidad;
   }
 }
