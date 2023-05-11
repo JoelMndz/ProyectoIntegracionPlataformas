@@ -28,9 +28,7 @@
             </div>
             <BotonForm texto="Registrar" :cargando="cargando" />
             <div class="mt-3 text-center">
-              <RouterLink to="/contacto/registrar-contacto"
-                >Lista de contactos</RouterLink
-              >
+              <RouterLink to="/contactos">Lista de contactos</RouterLink>
             </div>
           </form>
         </div>
@@ -66,15 +64,14 @@ export default defineComponent({
 
   methods: {
     ...mapActions(useContactoStore, ["crearContacto"]),
-    ...mapActions(useErrorStore,['resetarError']),
+    ...mapActions(useErrorStore, ["resetarError"]),
     async procesarFormulario() {
       this.cargando = true;
       this.resetarError();
       await this.crearContacto(this.contacto);
       this.cargando = false;
-      if (!this.error) {
-        router.push("/contacto/registrar-contacto");
-      }
+      this.cargando = false;
+      this.$router.push("/contactos");
     },
   },
   computed: {

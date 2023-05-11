@@ -43,6 +43,14 @@ const router = createRouter({
         rutaProtegida:true
       }
     },
+    {
+      path: '/registro-contacto',
+      name: 'registro-contacto',
+      component: () => import('../views/Contacto/RegistroContacto.vue'),
+      meta:{
+        rutaProtegida:true
+      }
+    },
   ]
 })
 

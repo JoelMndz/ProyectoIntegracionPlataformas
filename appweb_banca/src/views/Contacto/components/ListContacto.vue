@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row justify-content-center fila bg-light">
       <div class="col-10">
-        <table class="table table-striped">
+        <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr class="table-warning">
               <th>Nombre</th>
               <th>Número de cuenta</th>
               <th>Accion</th>
@@ -17,7 +17,7 @@
               <td>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  class="btn btn-outline-danger"
                   @click="eliminar(i._id)"
                 >
                   Eliminar
