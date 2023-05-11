@@ -1,7 +1,6 @@
 <template>
   <form @submit.prevent="procesarFormulario">
     <BotonForm texto="Agregar cuenta" :cargando="cargando" />
-  
   </form>
 </template>
 
@@ -38,5 +37,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+  
 </style>
