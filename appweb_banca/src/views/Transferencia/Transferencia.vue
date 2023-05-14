@@ -1,25 +1,26 @@
 <template>
   <div class="container">
     <div class="row justify-content-around">
-      <h2 class="text-center text-warning">Transferencia de Dinero</h2>
       <div class="col-sm-6">
+        <br>
+        <div class="card border-left-1">
+          <div class="row">
+            <h2 class="text-sec">TRANSACCIONAL ELECTRONICA</h2> 
+          </div>
+          <div class="row">
+            <div class="d-flex justify-content-between">
+              <div  class="card-numero">{{ cuentaActual?.numero  }}</div>
+              <div  class="card-saldo">${{ cuentaActual?.saldo  }}</div>              
+            </div>
+          </div>
+        </div>
+        <br>
         <div class="card border-left-1">
           <div class="card-body">
-            <div class="row">
-              <h7 class="card-title text-secondary col-8"
-                >Cnt de {{ cuentaActual?.tipo }} :
-                {{ cuentaActual?.numero }}</h7
-              >
-              <br />
-              <h7 class="card-title text-secondary col-4">
-                Saldo: {{ cuentaActual?.saldo }}</h7
-              >
-            </div>
-            <hr />
             <Error v-if="error" />
             <form @submit.prevent="procesarFormulario">
               <div class="mt-4">
-                <h6 class="text-right">Monto</h6>
+                <h6 class="text-label text-right">Monto</h6>
               </div>
               <div class="mb-4">
                 <input
@@ -31,13 +32,8 @@
                 />
               </div>
               <div class="mt-4">
-                <h6 class="text-right">Beneficiario</h6>
-              </div>
-              <!-- <div class="mt-4">
-                            <label for="nombre"> Nombre:{{ nombreBeneficiario}}</label>
-                            <h6 class="text-right ">nombre : {{ transferencia.nombreBeneficiario }}</h6>
-                        </div> -->
-
+                <h6 class="text-label text-right">Beneficiario</h6>
+              </div>              
               <div class="d-flex justify-content-between mb-2">
                 <input
                   class="form-control"
@@ -47,11 +43,10 @@
                   v-model="transferencia.cuentaBeneficiario"
                   required
                 />
-                <a
-                  href="#"
+                <button
                   @click="validar(transferencia.cuentaBeneficiario)"
-                  class="btn btn-warning text-secondary border-left-0"
-                  >Validar</a
+                  class="btn btn-warning border-left-0"
+                  >Validar</button
                 >
               </div>
               <br />
@@ -64,13 +59,13 @@
                   required
                 />
                 <RouterLink
-                  class="btn btn-warning text-secondary border-left-0"
+                  class="btn btn-warning border-left-0"
                   to="/registro-contacto"
                   >Registrar</RouterLink
                 >
               </div>
               <div class="mt-4">
-                <h6 class="text-right">Descripcion</h6>
+                <h6 class="text-label text-right">Descripcion</h6>
               </div>
               <div class="mb-4">
                 <input
@@ -82,7 +77,7 @@
                 />
               </div>
               <div class="mt-4">
-                <h6 class="text-right">Email</h6>
+                <h6 class="text-label text-right">Email</h6>
               </div>
               <div class="mb-4">
                 <input
@@ -186,5 +181,35 @@ export default defineComponent({
 <style scoped>
 a {
   background: #f0da77;
+}
+.btn{
+  background: #ffd100; 
+  font-size: 15px;
+  color: #0f265c;
+}
+.card{
+  border-bottom-left-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.row{
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.card-saldo{
+  color: #0f265c; 
+  font-size: 25px; 
+}
+.card-numero{
+  color: #444444; 
+  font-size: 17px; 
+}
+.text-sec{
+ font-size: 18px;
+ color: #0f265c;
+}
+.text-label{
+  font-size: 17px;
+ color: #0f265c;
 }
 </style>

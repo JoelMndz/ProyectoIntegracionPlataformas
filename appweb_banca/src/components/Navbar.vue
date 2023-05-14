@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar">
     <span class="navbar-brand"> Banca WEB </span>
     <RouterLink class="btn btn-outline-warning" to="/contactos"
       >Contactos</RouterLink
@@ -36,4 +36,10 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+
+<style>
+.navbar{
+  background-color: white;
+  border-bottom: 1px solid rgb(205, 205, 205);
+}
+</style>
