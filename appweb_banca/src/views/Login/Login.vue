@@ -23,12 +23,12 @@
                 required>
               <div class="text-end">
                 <RouterLink 
-                  to="#">¿Olvidaste tu contraseña?</RouterLink>
+                  to="/recuperar-password">¿Olvidaste tu contraseña?</RouterLink>
               </div>
             </div>
             <BotonForm 
               texto="Ingresar"
-              :cargando="cargando"/>
+              :carando="cargando"/>
             <div class="mt-3 text-center">
               <RouterLink 
                 to="/registro">Registrate en la Web</RouterLink>

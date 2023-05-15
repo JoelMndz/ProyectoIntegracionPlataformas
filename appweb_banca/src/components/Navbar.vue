@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand"> Banca WEB </span>
-    <RouterLink class="btn btn-outline-warning" to="/contactos"
-      >Contactos</RouterLink
-    >
+    <h2 style="padding: 5px;">Banca WEB</h2>
     <RouterLink class="btn btn-outline-warning" to="/cuentas"
       >Cuentas</RouterLink
     >
+    <RouterLink class="btn btn-outline-warning" to="/contactos"
+      >Contactos</RouterLink
+    >
     <div class="me-4">
-      <span>{{ nombreCompleto() }}</span>
+      <strong>{{ nombreCompleto() }}</strong>
       <button class="btn btn-danger mx-3" @click="cerrarSesion()">Salir</button>
     </div>
   </nav>

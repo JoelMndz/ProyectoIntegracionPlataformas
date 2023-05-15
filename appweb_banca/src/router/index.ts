@@ -20,6 +20,16 @@ const router = createRouter({
       }
     },
     {
+      path: '/recuperar-password',
+      name: 'recuperar-password',
+      component: () => import('../views/Password/RecuperarPassword.vue'),
+    },
+    {
+      path: '/cambiar-password',
+      name: 'cambiar-password',
+      component: () => import('../views/Password/CambiarPassword.vue'),
+    },
+    {
       path: '/cuentas',
       name: 'cuentas',
       component: () => import('../views/Cuenta/Cuenta.vue'),

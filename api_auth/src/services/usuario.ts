@@ -1,5 +1,5 @@
 import {UsuarioModel} from '../models'
-import { encriptarCadena, generarToken, subirImagen } from '../utils'
+import { encriptarCadena, generarToken, subirImagen} from '../utils'
 import { enviarEmail } from '../utils/enviarEmail'
 import { UsuarioValidation } from '../validations'
 
@@ -89,6 +89,39 @@ export const UsuarioService = {
       throw new Error('El usuario no existe!');
     }
     return usuario;
-  }
+  },
 
+  async recuperarPassword(email:string){
+    const usuario:any = await UsuarioModel.findOne({
+      email:email.toLowerCase()
+    })
+
+    if(!usuario){
+      throw new Error('El usuario no existe!');
+    }
+
+    let pin = (Math.floor(Math.random() * 900000) + 100000).toString();
+    await enviarEmail(
+      usuario.email,
+      `Pin: ${pin}`,
+      "Banca Web PIN TEMPORAL");
+    pin = await encriptarCadena(pin);
+    usuario.pin = pin;
+    await usuario.save();
+    return usuario;
+  },
+
+  async cambiarPassword(cedula:string, pin:string, password:string){
+    const usuario:any = await UsuarioModel.findOne({
+      cedula:cedula.trim()
+    })
+
+    if(!usuario){
+      throw new Error('El usuario no existe!');
+    }
+
+    usuario.password = await encriptarCadena(password);
+    await usuario.save();
+    return usuario;
+  },
 }
