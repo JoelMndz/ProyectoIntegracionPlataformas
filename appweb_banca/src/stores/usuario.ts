@@ -117,6 +117,54 @@ export const useUsuarioStore = defineStore('usuario', {
       this.token = null;
       localStorage.clear();
       router.push('/');
-    }
+    },
+
+    async recuperarPassword(email:string){
+      try {
+        const errorStore = useErrorStore();
+        await Axios({
+          url: `${API}/recuperar-password`,
+          method: 'POST',
+          data: {
+            email
+          }
+        })
+        .catch((x:any)=>{
+          if(x.code === 'ERR_NETWORK'){
+            errorStore.setError({mensaje:'Error en la Red'})
+          }else{    
+            errorStore.setError(x.response?.data ?? null) 
+          }
+        })
+        
+      } catch (error) {
+        console.log('ERROR',error);        
+      }
+    },
+
+    async cambiarPassword(cedula:string, pin:string, password:string){
+      try {
+        const errorStore = useErrorStore();
+        await Axios({
+          url: `${API}/cambiar-password`,
+          method: 'PUT',
+          data: {
+            cedula,
+            pin,
+            password
+          },
+        })
+        .catch((x:any)=>{
+          if(x.code === 'ERR_NETWORK'){
+            errorStore.setError({mensaje:'Error en la Red'})
+          }else{    
+            errorStore.setError(x.response?.data ?? null) 
+          }
+        })
+        
+      } catch (error) {
+        console.log('ERROR',error);        
+      }
+    },
   },
 })

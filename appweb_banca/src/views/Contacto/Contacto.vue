@@ -26,24 +26,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-button {
-  background: #ffdd00;
-  color: #0f265c;
-  width: 25%;
-  height: 50px;
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-button:hover {
-  background: #ffd100;
-}
-
-button:disabled {
-  background: #f0da77;
-}
-</style>
+<style scoped></style>
