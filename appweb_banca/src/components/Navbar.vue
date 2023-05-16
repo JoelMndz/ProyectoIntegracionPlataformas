@@ -8,7 +8,7 @@
       >Contactos</RouterLink
     >
     <div class="me-4">
-      <strong>{{ nombreCompleto() }}</strong>
+      <strong>{{ nombreCompleto().toUpperCase() }}</strong>
       <button class="btn btn-danger mx-3" @click="cerrarSesion()">Salir</button>
     </div>
   </nav>
@@ -36,4 +36,10 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+
+<style>
+.navbar{
+  background-color: white;
+  border-bottom: 1px solid rgb(205, 205, 205);
+}
+</style>

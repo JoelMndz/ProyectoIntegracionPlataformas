@@ -1,14 +1,22 @@
 <template>
-  <div class="mt bg-light">
-    <div class="col-2 justify-content-center">
-      <FormCuenta />
+  <div class="container">
+    
+  
+    <div class="row">
+      <div class="div-1 col-2 ">
+        <div class="form">
+          <FormCuenta />
+        </div>
+        
+      </div>
+      <div class=" div-2 col-10 right">
+        <h2 class="text">Mis Productos</h2>
+        <h2 class="sub-text">Cuentas de ahorros</h2>
+        <Card />
+      </div>
     </div>
-    <h2 class="text-center text-warning">Mis Productos</h2>
   </div>
-  <br />
-
-  <Card />
-</template>
+</template> 
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
@@ -34,4 +42,34 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.text{
+  color: #0f265c; 
+  font-size: 30px;
+  text-align: left; 
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.sub-text{
+  font-size: 20px;
+  color:#122d6b;
+  margin-left: 20px; 
+
+}
+.container{
+  height: 100vh;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.div-1{
+  border-right: 1px ridge rgb(205, 205, 205);
+  background-color: white;
+}
+.form{
+  margin-top: 50px;
+  margin-left: 10px;
+  width: 150px;
+  height: 10px ;
+}
+</style>
+

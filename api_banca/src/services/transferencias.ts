@@ -1,4 +1,5 @@
 import {CuentaModel} from '../models'
+import { transferenciaValidation } from '../validations';
 
 interface IrequestTransferencia{
     numero:string,
@@ -15,6 +16,10 @@ interface IrequestTransferencia{
 }
 export const transferenciaService = {
     transferencia: async(entidad:IrequestTransferencia)=>{
+        const {error} = transferenciaValidation.validacionTrasnferir.validate({numero: entidad.numero,monto: entidad.monto,nombreBeneficiario: entidad.nombreBeneficiario,cuentaBeneficiario:entidad.cuentaBeneficiario, saldoDisponible: entidad.saldoDisponible, email: entidad.email});
+        if(error){
+            throw new Error(error.message);
+        } 
         if(entidad.saldoDisponible < entidad.monto){
             throw new Error('Lo sentimos, no cuentas con dinero suficiente para realizar la transferencia!');
         }else{
