@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-banca-deployment
+  labels:
+    app: api-banca
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-banca
+  template:
+    metadata:
+      labels:
+        app: api-banca
+    spec:
+      containers:
+      - name: api-banca
+        image: joelmndz/api_banca:latest
+        ports:
+        - containerPort: 5002
+        env:
+        - name: PORT
+          value: "5002"
+
+        - name: MONGO_URI
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: URI_BANCA
+
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: api-banca-secrets
+              key: SECRET
+
+        - name: EMAIL_USER
+          valueFrom:
+            secretKeyRef:
+              name: api-banca-secrets
+              key: EMAIL_USER
+
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: api-banca-secrets
+              key: EMAIL_PASSWORD
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-banca-service
+spec:
+  type: NodePort
+
+  selector:
+    app: api-banca
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002
+      nodePort: 30200
+      

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  URI_AUTH: mongodb://mongo-service:27017/api_auth_db
+  URI_BANCA: mongodb://mongo-service:27017/api_banca_db
