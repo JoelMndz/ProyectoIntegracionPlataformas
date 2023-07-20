@@ -2,6 +2,13 @@ import { Request, Response } from "express";
 import { manejarError } from "../error";
 import { CuentaService } from "../services";
 
+interface IFiltrosMovimientos {
+  usuarioId?: string;
+  tipo?: string;
+  numero?:string;
+  fechaInicio?: string;
+  fechaFin?: string;
+}
 
 export const CuentaController = {
   crear: async(req:Request, res:Response) =>{
@@ -22,5 +29,14 @@ export const CuentaController = {
     }catch(error:any){
         return manejarError(res,error);
     }
-  }
+  },
+  obtenerMovimientos: async(req:Request, res: Response)=>{
+    try{
+      const filtros: IFiltrosMovimientos = req.query;
+      const movimientos = await CuentaService.obtenerMovimientos(filtros);
+      res.json(movimientos);
+    }catch(error){
+      return manejarError(res,error);
+    }
+  },
 };
