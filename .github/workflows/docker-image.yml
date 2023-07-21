@@ -45,3 +45,17 @@ jobs:
       run: |
         docker push joelmndz/api_auth:$NEW_VERSION
         docker push joelmndz/api_auth:latest
+
+    - name: Construir imagen de api_banca
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t joelmndz/api_banca:$NEW_VERSION ./api_banca
+        docker build -t joelmndz/api_banca:latest ./api_banca
+
+    - name: Subir imagen de api_banca
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push joelmndz/api_banca:$NEW_VERSION
+        docker push joelmndz/api_banca:latest
