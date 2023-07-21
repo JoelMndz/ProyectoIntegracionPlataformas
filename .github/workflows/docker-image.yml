@@ -13,6 +13,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Generar version automaticamente
+      uses: PaulHatch/semantic-version@v4.0.3
+      with:
+        major_pattern: "major:"
+        minor_pattern: "feat:"
+        format: "${major}.${minor}.${patch}-prerelease${increment}"
+      id: version
+
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    
+    - name: Construir imagen de api_auth
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t joelmndz/api_auth:$NEW_VERSION ./api_auth
+        docker build -t joelmndz/api_auth:latest ./api_auth
+
+    - name: Subir imagen de api_auth
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push joelmndz/api_auth:$NEW_VERSION
+        docker push joelmndz/api_auth:latest
