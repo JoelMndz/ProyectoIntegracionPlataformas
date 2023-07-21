@@ -107,4 +107,17 @@ jobs:
         docker push joelmndz/api_graphql:$NEW_VERSION
         docker push joelmndz/api_graphql:latest
 
-      
+    # api_websocket
+    - name: Construir imagen de api_websocket
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t joelmndz/api_websocket:$NEW_VERSION ./api_websocket
+        docker build -t joelmndz/api_websocket:latest ./api_websocket
+
+    - name: Subir imagen de api_websocket
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push joelmndz/api_websocket:$NEW_VERSION
+        docker push joelmndz/api_websocket:latest
