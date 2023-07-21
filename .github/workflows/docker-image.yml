@@ -91,3 +91,20 @@ jobs:
       run: |
         docker push joelmndz/appweb_cajero:$NEW_VERSION
         docker push joelmndz/appweb_cajero:latest
+
+    # api_graphql
+    - name: Construir imagen de api_graphql
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t joelmndz/api_graphql:$NEW_VERSION ./api_graphql
+        docker build -t joelmndz/api_graphql:latest ./api_graphql
+
+    - name: Subir imagen de api_graphql
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push joelmndz/api_graphql:$NEW_VERSION
+        docker push joelmndz/api_graphql:latest
+
+      
