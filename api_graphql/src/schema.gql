@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cuenta {
+  _id: ID!
+  numero: String!
+  titular: String!
+  usuarioId: String!
+  tipo: String!
+  saldo: Float!
+  movimientos: [Movimiento!]!
+  activa: Boolean!
+  fechaCreacion: String!
+}
+
+type Movimiento {
+  numero: String!
+  monto: Float!
+  tipo: String!
+  fecha: String!
+  nombreBeneficiario: String!
+  cuentaBeneficiario: String!
+  saldoDisponible: Float!
+  descripcion: String!
+  email: String!
+}
+
+type Query {
+  cuentas(usuarioId: String, tipo: String, numero: String, fechaInicio: String, fechaFin: String): [Cuenta!]!
+}
