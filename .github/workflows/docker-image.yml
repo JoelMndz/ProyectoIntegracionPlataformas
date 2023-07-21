@@ -73,3 +73,17 @@ jobs:
       run: |
         docker push joelmndz/appweb_banca:$NEW_VERSION
         docker push joelmndz/appweb_banca:latest
+
+    - name: Construir imagen de appweb_cajero
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t joelmndz/appweb_cajero:$NEW_VERSION ./appweb_cajero
+        docker build -t joelmndz/appweb_cajero:latest ./appweb_cajero
+
+    - name: Subir imagen de appweb_cajero
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push joelmndz/appweb_cajero:$NEW_VERSION
+        docker push joelmndz/appweb_cajero:latest
